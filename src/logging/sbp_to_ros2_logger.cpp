@@ -12,6 +12,10 @@
 
 #include <logging/sbp_to_ros2_logger.h>
 
+#ifndef SBP_MSG_LOG
+#define SBP_MSG_LOG 0x0401
+#endif
+
 SBPToROS2Logger::SBPToROS2Logger(sbp::State* state, const LoggerPtr& logger,
                                  const bool log_messages,
                                  const std::string& log_path)
