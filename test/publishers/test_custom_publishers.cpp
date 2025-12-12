@@ -30,6 +30,9 @@
 #include <utils/config.h>
 #include <swiftnav_ros2_driver/msg/baseline.hpp>
 
+#ifndef SBP_SENDER_ID
+#define SBP_SENDER_ID 0x42
+#endif
 
 constexpr uint32_t MAX_MSG_SIZE = 255;
 constexpr uint64_t SECONDS = 1000000000ULL;
@@ -144,7 +147,7 @@ class TestCustomPublishers : public ::testing::Test {
     while (!test_finished && !timed_out) {
       executor.spin_once(std::chrono::nanoseconds(10000000LL));
       timed_out = timedOut(start, 2 * SECONDS);
-  }
+    }
 
     ASSERT_FALSE(timed_out);
   }
@@ -167,5 +170,4 @@ TEST_F(TestCustomPublishers, CreateInvalidPublisher) {
   ASSERT_FALSE(pub);
 }
 
-TEST_F(TestCustomPublishers, CreateBaselinePublisher) {
-}
+TEST_F(TestCustomPublishers, CreateBaselinePublisher) {}
