@@ -33,6 +33,7 @@ class Config {
 
   // Getters
   std::string getFrame() const { return frame_; }
+  std::string getImuFrame() const { return imu_frame_; }
   bool getLogSBPMessages() const { return log_sbp_messages_; }
   std::string getLogPath() const { return log_path_; }
   int32_t getInterface() const { return interface_; }
@@ -67,6 +68,7 @@ class Config {
   void loadParameters(rclcpp::Node* node);
 
   std::string frame_;
+  std::string imu_frame_;
   bool log_sbp_messages_; /** @brief Flag to enable/disable SBP messages logging
                            */
   std::string

@@ -19,6 +19,7 @@ swiftnav_ros2_driver:
 
     # ROS2 Frame Name
     frame_name: "swiftnav-gnss"
+    imu_frame_name: "swiftnav-imu"
 
     # Topic Publication Time Stamp Source
     timestamp_source_gnss: True # True: use GNSS receiver reported time (default), False: use current platfrom time

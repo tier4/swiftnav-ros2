@@ -20,6 +20,7 @@ Config::Config(rclcpp::Node* node) {
 
 void Config::declareParameters(rclcpp::Node* node) {
   node->declare_parameter<std::string>("frame_name", "swiftnav-gnss");
+  node->declare_parameter<std::string>("imu_frame_name", "swiftnav-imu");
   node->declare_parameter<bool>("log_sbp_messages", false);
   node->declare_parameter<std::string>("log_sbp_filepath", "");
   node->declare_parameter<int32_t>("interface", 0);
@@ -43,6 +44,7 @@ void Config::declareParameters(rclcpp::Node* node) {
 
 void Config::loadParameters(rclcpp::Node* node) {
   node->get_parameter<std::string>("frame_name", frame_);
+  node->get_parameter<std::string>("imu_frame_name", imu_frame_);
   node->get_parameter<bool>("log_sbp_messages", log_sbp_messages_);
   node->get_parameter<std::string>("log_sbp_filepath", log_path_);
   node->get_parameter<int32_t>("interface", interface_);
