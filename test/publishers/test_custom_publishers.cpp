@@ -126,7 +126,7 @@ class TestCustomPublishers : public ::testing::Test {
     auto node_ptr = node.get();
     auto config = std::make_shared<Config>(node_ptr);
     auto pub = publisherFactory(pub_type, runner_.getState(), node.get(),
-                                logger_, frame_name_, config);
+                                logger_, config);
     auto subs_call = [&msg, &test_finished, &comp](const rosT ros_msg) {
       comp(msg, ros_msg);
       test_finished = true;
@@ -153,7 +153,6 @@ class TestCustomPublishers : public ::testing::Test {
   }
 
   const std::string topic_name_ = "test_custom";
-  const std::string frame_name_ = "test_frame";
   static LoggerPtr logger_;
   static SBPRunner runner_;
 };
@@ -166,7 +165,7 @@ TEST_F(TestCustomPublishers, CreateInvalidPublisher) {
   auto node_ptr = node.get();
   auto config = std::make_shared<Config>(node_ptr);
   auto pub = publisherFactory("invalid_one", runner_.getState(), node.get(),
-                              logger_, frame_name_, config);
+                              logger_, config);
   ASSERT_FALSE(pub);
 }
 

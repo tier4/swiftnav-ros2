@@ -46,7 +46,6 @@ static const PublisherMap publishers[] = {
 
 PublisherPtr publisherFactory(const std::string& pub_type, sbp::State* state,
                               rclcpp::Node* node, const LoggerPtr& logger,
-                              const std::string& frame,
                               const std::shared_ptr<Config>& config) {
   PublisherPtr pub;
   Publishers pub_id = Publishers::Invalid;
@@ -62,32 +61,32 @@ PublisherPtr publisherFactory(const std::string& pub_type, sbp::State* state,
   switch (pub_id) {
     case Publishers::Baseline:
       pub = std::make_shared<BaselinePublisher>(state, topic, node, logger,
-                                                frame, config);
+                                                config->getFrame(), config);
       break;
 
     case Publishers::GpsFix:
-      pub = std::make_shared<GPSFixPublisher>(state, topic, node, logger, frame,
-                                              config);
+      pub = std::make_shared<GPSFixPublisher>(state, topic, node, logger,
+                                              config->getFrame(), config);
       break;
 
     case Publishers::NavSatFix:
       pub = std::make_shared<NavSatFixPublisher>(state, topic, node, logger,
-                                                 frame, config);
+                                                 config->getFrame(), config);
       break;
 
     case Publishers::TwistWithCovarianceStamped:
       pub = std::make_shared<TwistWithCovarianceStampedPublisher>(state, topic, node, logger,
-                                                 frame, config);
+                                                 config->getFrame(), config);
       break;
 
     case Publishers::TimeReference:
       pub = std::make_shared<TimeReferencePublisher>(state, topic, node, logger,
-                                                     frame, config);
+                                                     config->getFrame(), config);
       break;
 
     case Publishers::Imu:
-      pub = std::make_shared<ImuPublisher>(state, topic, node, logger, frame,
-                                           config);
+      pub = std::make_shared<ImuPublisher>(state, topic, node, logger,
+                                           config->getImuFrame(), config);
       break;
 
     default:

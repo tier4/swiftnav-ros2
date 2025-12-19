@@ -93,14 +93,13 @@ class SBPROS2DriverNode : public rclcpp::Node {
    * @brief Method for creating the SBP to ROS2 publishers
    */
   void createPublishers() {
-    auto frame = config_->getFrame();
     const auto publishers = config_->getPublishers();
 
     LOG_INFO(logger_, "Creating %u publishers", publishers.size());
     for (const auto& publisher : publishers) {
       LOG_INFO(logger_, "Adding publisher %s", publisher.c_str());
       pubs_manager_.add(
-          publisherFactory(publisher, &state_, this, logger_, frame, config_));
+          publisherFactory(publisher, &state_, this, logger_, config_));
     }
   }
 

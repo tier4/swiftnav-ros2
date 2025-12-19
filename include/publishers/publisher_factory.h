@@ -33,5 +33,4 @@
  */
 PublisherPtr publisherFactory(const std::string& pub_type, sbp::State* state,
                               rclcpp::Node* node, const LoggerPtr& logger,
-                              const std::string& frame,
                               const std::shared_ptr<Config>& config);
